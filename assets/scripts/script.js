@@ -4,22 +4,22 @@ var questionList = [
         question: "Which of the following is NOT an example of a falsy value?",
         choices: ["NaN", "null", "'False'", "undefined"],
         answer: "'False'"
-    }
+    },
     {
         question: "Which of these is the logical operator that means 'or'?",
         choices: ["##", "==", "&&", "||"],
         answer: "||" 
-    }
+    },
     {
         question: "Which of these is a string?",
         choices: ["'5'", "5", "true", "None of these"],
         answer: "'5'" 
-    }
+    },
     {
         question: "What is the correct way to write an array in JavaScript?",
         choices: ["var array = ('one', 'two', 'three')", "var array = {'one', 'two', 'three'}", "var array = 'one', 'two', 'three'", "var array = ['one', 'two', 'three']"],
         answer: "var array = ['one', 'two', 'three']"
-    }
+    },
     {
         question: "Which of the following is an example of camel case?",
         choices: ["background_color", "backgroundColor", "BackgroundColor", "Background-Color"],
@@ -38,13 +38,33 @@ var clearButton = document.getElementById("clear-button");
 var homeButton = document.getElementById("home-button");
 var scoreList = document.getElementById("score-list");
 var remainingTime = document.getElementById("timer");
+var answerList = document.getElementById("answer-list");
+var questionHeader = document.getElementById("question-header");
 
+// Load Splash screen to start the quiz
+startScreen()
+
+function startScreen() {
+    startSplash.style.display = "block";
+}
 // start quiz function (when startButton is clicked), hide start splash screen and show first question
-function startQuiz() {
-
+function takeQuiz() {
+    startSplash.setAttribute("style", "display: none;");
+    questionWrapper.setAttribute("style", "display: block;");
+    
 }
 
-// add event listener for question div 
-
 // function to determine if correct answer was clicked, if it was award point(s), if not deduct 10 seconds from timer
+function checkAnswer() {
 
+};
+
+// Clear High Score
+function clearScores() {
+
+};
+
+// add event listeners
+answerList.addEventListener("click", checkAnswer);
+startButton.addEventListener("click", takeQuiz);
+clearButton.addEventListener("click", clearScores())
