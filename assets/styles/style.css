@@ -12,7 +12,7 @@ p {
     font-size: large;
 }
 
-#start-splash {
+.splash {
     border: 2px solid #708090;
     border-radius: 15%;
     text-align: center;

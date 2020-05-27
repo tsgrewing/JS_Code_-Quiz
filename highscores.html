@@ -10,26 +10,18 @@
 
 <body>
     <nav class="navbar  navbar-dark bg-dark">
-        <a class="navbar-brand" href="highscores.html">See High Scores</a>
-        <span class="navbar-text" id="timer">
-            Time
-        </span>
+        <a class="navbar-brand" href="index.html">Back to Quiz</a>
     </nav> 
   
     <main class="container">
         <section class="row justify-content-center">
-            <div class="col-11 col-sm-10 col-md-8 splash" id="start-splash">
-                <h1>Code Quiz</h1>
-                <p>You have 50 seconds to answer the questions, each incorrect answer will deduct 10 seconds from your remaining time. Good luck!</p>
-                <button type="button" class="btn btn-success" id="start-button">Start the quiz</button>
-            </div>
-
-            <div class="col-11 col-sm-10 col-md-8 splash d-none" id="question-wrapper">
-                <h1 id="question-header"></h1>
-                <ul id='choice-list'>
+            <div class="col-11 col-sm-10 col-md-8 splash" id="scores-wrapper">
+                <h1>High Scores</h1>
+                <ul id="score-list">
                 </ul>
+                <button type="button" class="btn btn-danger" id="clear-button">Clear Scores</button>
+                <a href="index.html"><button type="button" class="btn btn-success" id="home-button">Back to Quiz</button></a>
             </div>
-            
         </section>
         
     </main>
