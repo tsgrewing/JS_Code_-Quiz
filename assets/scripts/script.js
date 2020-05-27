@@ -28,7 +28,9 @@ var questionList = [
 ]
 // global variables
 var score;
-var timeLeft;
+var numberOfQuestions = questionList.length;
+var timeLeft = numberOfQuestions * 10;
+var questionNumber = 0;
 
 // set variables for html elements
 var startButton = document.getElementById("start-button");
@@ -51,20 +53,35 @@ function startScreen() {
 function takeQuiz() {
     startSplash.setAttribute("style", "display: none;");
     questionWrapper.setAttribute("style", "display: block;");
-    
+    nextQuestion();
+}
+
+function nextQuestion () {
+    var currentQuestion = questionList[questionNumber].question;
+    var answerChoices = questionList[questionNumber].choices;
+    questionHeader.textContent = currentQuestion;
+    for (i = 0; i < answerChoices.length; i++) {
+        var choice = document.createElement("li");
+        choice.textContent = answerChoices[i];
+        answerList.appendChild(choice);
+    };
 }
 
 // function to determine if correct answer was clicked, if it was award point(s), if not deduct 10 seconds from timer
-function checkAnswer() {
+answerList.addEventListener("click", function(event){
+    var answerChoice = event.target.textContent;
+    console.log(answerChoice)
 
-};
-
+})
 // Clear High Score
 function clearScores() {
 
 };
 
+
+
 // add event listeners
-answerList.addEventListener("click", checkAnswer);
+
 startButton.addEventListener("click", takeQuiz);
-clearButton.addEventListener("click", clearScores())
+clearButton.addEventListener("click", clearScores);
+// answerList.addEventListener.("click", )

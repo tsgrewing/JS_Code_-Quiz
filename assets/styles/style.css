@@ -14,10 +14,29 @@ p {
 
 .splash {
     border: 2px solid #708090;
-    border-radius: 15%;
+    border-radius: 25px;
     text-align: center;
     padding: 25px;
     background-color: #fffafa;
     display:none;
 }
 
+#answer-list {
+    list-style: none;
+    text-align: center;
+    padding-left: 0pt;
+}
+
+#answer-list li {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(88, 185, 136, 0.452);
+    border-radius: 25px;
+    border: 2px solid #50664d;
+    margin: 2px;
+}
+
+#answer-list li:hover{
+    background-color: rgba(88, 185, 136, 0.733);
+    cursor: pointer;
+}
