@@ -27,15 +27,18 @@ var questionList = [
     }
 ]
 // global variables
-var score;
+var score = 0;
 var numberOfQuestions = questionList.length;
 var timeLeft = numberOfQuestions * 10;
 var questionNumber = 0;
+
 
 // set variables for html elements
 var startButton = document.getElementById("start-button");
 var startSplash = document.getElementById("start-splash");
 var questionWrapper = document.getElementById("question-wrapper");
+var finalScore = document.getElementById("final-score");
+var scoreWrapper = document.getElementById("scores-wrapper");
 var clearButton = document.getElementById("clear-button");
 var homeButton = document.getElementById("home-button");
 var scoreList = document.getElementById("score-list");
@@ -46,16 +49,23 @@ var questionHeader = document.getElementById("question-header");
 // Load Splash screen to start the quiz
 startScreen()
 
+
 function startScreen() {
     startSplash.style.display = "block";
+    questionWrapper.style.display = "none";
+    scoreWrapper.style.display = "none";
+    finalScore.style.display = "none";
 }
 // start quiz function (when startButton is clicked), hide start splash screen and show first question
 function takeQuiz() {
+;
     startSplash.setAttribute("style", "display: none;");
     questionWrapper.setAttribute("style", "display: block;");
+    countDown();
     nextQuestion();
 }
 
+// Function to populate elements with next question
 function nextQuestion () {
     var currentQuestion = questionList[questionNumber].question;
     var answerChoices = questionList[questionNumber].choices;
@@ -69,19 +79,71 @@ function nextQuestion () {
 
 // function to determine if correct answer was clicked, if it was award point(s), if not deduct 10 seconds from timer
 answerList.addEventListener("click", function(event){
+    var correctAnswer = questionList[questionNumber].answer;
     var answerChoice = event.target.textContent;
-    console.log(answerChoice)
 
-})
+    if (answerChoice === correctAnswer) {
+        score++;
+
+    }
+    else {
+        timeLeft = timeLeft - 10;
+
+    };
+
+    questionNumber++;
+
+    if (questionNumber < numberOfQuestions){
+        answerList.innerHTML = "";
+        nextQuestion();
+    }
+    else {
+        endQuiz();
+        
+    }
+});
+
+function endQuiz() {
+    score = (score * 5 + timeLeft);
+    questionWrapper.style.display = "none";
+    document.getElementById("your-score").innerHTML = "Your score is " + score + "!";
+    finalScore.style.display = "block";
+
+    
+}
+
+// Function to count the timer down from starting point
+function countDown () {
+    var timer = setInterval(function() {
+        timeLeft--;
+        remainingTime.textContent = "Time Remaining: " + timeLeft;
+
+        if(timeLeft === 0) {
+            clearInterval(timer);
+            endQuiz();
+        }
+        else if (questionNumber === numberOfQuestions) {
+            clearInterval(timer);
+        }
+    
+    }, 1000);
+    
+    remainingTime.textContent = "Time Remaining: " + timeLeft;
+};
+
+// Find high scores and show them
+function renderHighScores() {
+
+}
+
 // Clear High Score
 function clearScores() {
 
 };
 
-
-
 // add event listeners
-
+homeButton.addEventListener("click", startScreen);
 startButton.addEventListener("click", takeQuiz);
 clearButton.addEventListener("click", clearScores);
-// answerList.addEventListener.("click", )
+
+
