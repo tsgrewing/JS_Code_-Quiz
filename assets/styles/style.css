@@ -1,11 +1,14 @@
 body {
     background-color: #50664d;
+    font-family: 'Quantico', sans-serif;}
+
+#highscore-link {
+    cursor: pointer;
 }
 
 main {
     margin: 25px;
     padding: 25px;
-
 }
 
 p {
@@ -36,7 +39,12 @@ p {
     margin: 2px;
 }
 
-#answer-list li:hover{
+#answer-list li:hover {
     background-color: rgba(88, 185, 136, 0.733);
     cursor: pointer;
+}
+#score-list {
+    list-style-position: inside;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
 }

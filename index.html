@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quantico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/style.css">
     <title>Code Quiz</title>
 </head>
 
 <body>
     <nav class="navbar  navbar-dark bg-dark">
-        <a class="navbar-brand" id="high-score-link" href="">See High Scores</a>
+        <h1 class="navbar-brand" id="highscore-link">See High Scores</h1>
         <span class="navbar-text" id="timer">
             Time
         </span>
@@ -33,16 +34,17 @@
             <div class="col-11 col-sm-10 col-md-8 splash" id="final-score">
                 <h3>Finshed!</h3>
                 <h4 id="your-score"></h4>
-                <form>
-                <span>Enter your initials: </span><input type="text" id="initials">  </input>
-                <button type="button" class="btn btn-success">Submit Score</button>
+                <form id="score-submission">
+                <span>Enter your initials: </span><input type="text" id="initials"></input>
                 </form>
             </div>
 
             <div class="col-11 col-sm-10 col-md-8 splash" id="scores-wrapper">
                 <h2>High Scores</h2>
-                <ul id="score-list">
-                </ul>
+                <div class="row justify-content-center">
+                <ol class="col-4" id="score-list">
+                </ol>
+                </div>
                 <button type="button" class="btn btn-danger" id="clear-button">Clear Scores</button>
                 <button type="button" class="btn btn-success" id="home-button">Back to Quiz</button>
             </div>
