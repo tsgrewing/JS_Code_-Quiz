@@ -145,14 +145,18 @@ function countDown () {
 scoreSubmission.addEventListener("submit", function(event) {
     event.preventDefault();
     
-    var user = initials.value;
+    var user = initials.value.toUpperCase();
     if (user === "") {
         alert("Initials cannot be blank");
     }
     else {
-        highscores.push([user, score]);
+        highscores.push({"initials": user, "points":score});
     }
     scoreForm.style.display = "none";
+
+    highscores.sort(function(a,b){
+        return b.points - a.points;
+    })
 
     localStorage.setItem("highscores", JSON.stringify(highscores));
 
@@ -181,8 +185,8 @@ function displayHighscores() {
     scoreList.innerHTML = "";
     // render new li for each set of user initials
     for (var i = 0; i < highscores.length; i++) {
-        var userInitials = highscores[i][0];
-        var highscore = highscores[i][1];
+        var userInitials = highscores[i]["initials"];
+        var highscore = highscores[i]["points"];
         var li = document.createElement("li");
 
         if (i % 2 !== 0) {
