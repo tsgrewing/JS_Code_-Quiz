@@ -34,8 +34,7 @@ var questionNumber = 0;
 var highscores = [];
 var currentScore = [];
 
-
-// set variables for html elements
+// variables for html elements
 var startButton = document.getElementById("start-button");
 var startSplash = document.getElementById("start-splash");
 var questionWrapper = document.getElementById("question-wrapper");
@@ -66,7 +65,8 @@ function startScreen() {
     scoreWrapper.style.display = "none";
     scoreForm.style.display = "none";
 
-}
+};
+
 // start quiz function (when startButton is clicked), hide start splash screen and show first question
 function takeQuiz() {
 
@@ -75,8 +75,9 @@ function takeQuiz() {
     questionNumber = 0;
     startSplash.style.display = "none";
     questionWrapper.style.display = "block";
-    // countDown();
+
     nextQuestion();
+    // Start timer 
     var timer = setInterval(function() {
         timeLeft--;
         remainingTime.textContent = "Time Remaining: " + timeLeft;
@@ -92,7 +93,7 @@ function takeQuiz() {
     }, 1000);
     
     remainingTime.textContent = "Time Remaining: " + timeLeft;
-}
+};
 
 // Function to populate elements with next question
 function nextQuestion () {
@@ -105,7 +106,7 @@ function nextQuestion () {
         choice.textContent = answerChoices[i];
         answerList.appendChild(choice);
     };
-}
+};
 
 // function to determine if correct answer was clicked, if it was award point(s), if not deduct 10 seconds from timer
 answerList.addEventListener("click", function(event){
@@ -163,26 +164,7 @@ function endQuiz() {
     displayHighscores(); 
   
 });
-}
-
-// Function to count the timer down from starting point
-// function countDown () {
-//     var timer = setInterval(function() {
-//         timeLeft--;
-//         remainingTime.textContent = "Time Remaining: " + timeLeft;
-
-//         if(timeLeft === 0) {
-//             clearInterval(timer);
-//             endQuiz();
-//         }
-//         else if (questionNumber === numberOfQuestions) {
-//             clearInterval(timer);
-//         }
-    
-//     }, 1000);
-    
-//     remainingTime.textContent = "Time Remaining: " + timeLeft;
-// };
+};
 
 // pull scores from local memory, add them to the empty array
 function loadHighscores() {
@@ -191,7 +173,7 @@ function loadHighscores() {
         highscores = savedScores;
     }
 
-}
+};
 
 // Pass high scores into the html and display to user
 function displayHighscores() {
