@@ -50,6 +50,7 @@ var questionHeader = document.getElementById("question-header");
 var scoreSubmission = document.getElementById("score-submission");
 var initials = document.getElementById("initials");
 var highscoreLink = document.getElementById("highscore-link");
+var rightOrWrong = document.getElementById("right-or-wrong");
 
 // Load Splash screen to start the quiz
 startScreen();
@@ -74,8 +75,23 @@ function takeQuiz() {
     questionNumber = 0;
     startSplash.style.display = "none";
     questionWrapper.style.display = "block";
-    countDown();
+    // countDown();
     nextQuestion();
+    var timer = setInterval(function() {
+        timeLeft--;
+        remainingTime.textContent = "Time Remaining: " + timeLeft;
+
+        if(timeLeft === 0) {
+            clearInterval(timer);
+            endQuiz();
+        }
+        else if (questionNumber === numberOfQuestions) {
+            clearInterval(timer);
+        }
+    
+    }, 1000);
+    
+    remainingTime.textContent = "Time Remaining: " + timeLeft;
 }
 
 // Function to populate elements with next question
@@ -98,9 +114,14 @@ answerList.addEventListener("click", function(event){
 
     if (answerChoice === correctAnswer) {
         score++;
+        rightOrWrong.style.color = "#5d9256";
+        rightOrWrong.textContent = "Correct"
     }
     else {
         timeLeft = timeLeft - 10;
+        rightOrWrong.style.color = "#AB1813";
+        rightOrWrong.textContent = "Incorrect, the correct answer is: " + correctAnswer;
+
     };
 
     questionNumber++;
@@ -120,29 +141,8 @@ function endQuiz() {
     questionWrapper.style.display = "none";
     document.getElementById("your-score").innerHTML = "Your score is " + score + "!";
     scoreForm.style.display = "block";
-}
-
-// Function to count the timer down from starting point
-function countDown () {
-    var timer = setInterval(function() {
-        timeLeft--;
-        remainingTime.textContent = "Time Remaining: " + timeLeft;
-
-        if(timeLeft === 0) {
-            clearInterval(timer);
-            endQuiz();
-        }
-        else if (questionNumber === numberOfQuestions) {
-            clearInterval(timer);
-        }
-    
-    }, 1000);
-    
-    remainingTime.textContent = "Time Remaining: " + timeLeft;
-};
-
-// pull high scores from local storage and add current score, then arrange the scores highest to lowest
-scoreSubmission.addEventListener("submit", function(event) {
+    // pull high scores from local storage and add current score, then arrange the scores highest to lowest
+    scoreSubmission.addEventListener("submit", function(event) {
     event.preventDefault();
     
     var user = initials.value.toUpperCase();
@@ -163,7 +163,26 @@ scoreSubmission.addEventListener("submit", function(event) {
     displayHighscores(); 
   
 });
+}
 
+// Function to count the timer down from starting point
+// function countDown () {
+//     var timer = setInterval(function() {
+//         timeLeft--;
+//         remainingTime.textContent = "Time Remaining: " + timeLeft;
+
+//         if(timeLeft === 0) {
+//             clearInterval(timer);
+//             endQuiz();
+//         }
+//         else if (questionNumber === numberOfQuestions) {
+//             clearInterval(timer);
+//         }
+    
+//     }, 1000);
+    
+//     remainingTime.textContent = "Time Remaining: " + timeLeft;
+// };
 
 // pull scores from local memory, add them to the empty array
 function loadHighscores() {
@@ -207,5 +226,6 @@ homeButton.addEventListener("click", () => {
 startButton.addEventListener("click", takeQuiz);
 highscoreLink.addEventListener("click", displayHighscores);
 clearButton.addEventListener("click", () => {
- localStorage.clear();
+    localStorage.clear();
+    scoreList.innerHTML = "";
 });
