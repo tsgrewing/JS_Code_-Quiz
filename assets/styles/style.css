@@ -21,7 +21,7 @@ p {
     text-align: center;
     padding: 25px;
     background-color: #fafffb;
-    display:none;
+    /* display:none; */
 }
 
 #answer-list {

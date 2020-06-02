@@ -122,7 +122,6 @@ answerList.addEventListener("click", function(event){
         timeLeft = timeLeft - 10;
         rightOrWrong.style.color = "#AB1813";
         rightOrWrong.textContent = "Incorrect, the correct answer is: " + correctAnswer;
-
     };
 
     questionNumber++;
