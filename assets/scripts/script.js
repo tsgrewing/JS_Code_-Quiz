@@ -132,6 +132,7 @@ answerList.addEventListener("click", function(event){
     }
     else {
         endQuiz();
+        rightOrWrong.textContent = "";
     }
 });
 
