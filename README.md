@@ -6,7 +6,7 @@ A short quiz consisting of five multiple choice questions, that can be expanded 
 
 ## Demo
 
-![Quiz Demo] (assets/Code Quiz.gif)
+![Quiz Demo](assets/demo.gif)
 
 
 
