@@ -143,6 +143,7 @@ function endQuiz() {
     document.getElementById("your-score").innerHTML = "Your score is " + score + "!";
     scoreForm.style.display = "block";
     // pull high scores from local storage and add current score, then arrange the scores highest to lowest
+    loadHighscores();
     scoreSubmission.addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -172,11 +173,15 @@ function loadHighscores() {
     if (savedScores !== null) {
         highscores = savedScores;
     }
+    else {
+        highscores = [];
+    }
 
 };
 
 // Pass high scores into the html and display to user
 function displayHighscores() {
+    
     scoreWrapper.style.display = "block"
     startSplash.style.display = "none";
     questionWrapper.style.display = "none";
@@ -209,5 +214,7 @@ startButton.addEventListener("click", takeQuiz);
 highscoreLink.addEventListener("click", displayHighscores);
 clearButton.addEventListener("click", () => {
     localStorage.clear();
-    scoreList.innerHTML = "";
+    loadHighscores();
+    displayHighscores();
+
 });
