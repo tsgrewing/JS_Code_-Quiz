@@ -69,7 +69,6 @@ function startScreen() {
 
 // start quiz function (when startButton is clicked), hide start splash screen and show first question
 function takeQuiz() {
-
     score = 0;
     timeLeft = numberOfQuestions * 10;
     questionNumber = 0;
@@ -132,7 +131,6 @@ answerList.addEventListener("click", function(event){
     }
     else {
         endQuiz();
-        rightOrWrong.textContent = "";
     }
 });
 
@@ -140,16 +138,19 @@ answerList.addEventListener("click", function(event){
 function endQuiz() {
     score = (score * 5 + timeLeft);
     questionWrapper.style.display = "none";
+    rightOrWrong.textContent = "";
     document.getElementById("your-score").innerHTML = "Your score is " + score + "!";
     scoreForm.style.display = "block";
     // pull high scores from local storage and add current score, then arrange the scores highest to lowest
     loadHighscores();
     scoreSubmission.addEventListener("submit", function(event) {
     event.preventDefault();
+
     
     var user = initials.value.toUpperCase();
     if (user === "") {
         alert("Initials cannot be blank");
+
     }
     else {
         highscores.push({"initials": user, "points":score});
@@ -163,19 +164,19 @@ function endQuiz() {
     localStorage.setItem("highscores", JSON.stringify(highscores));
 
     displayHighscores(); 
+    return;
   
 });
 };
 
 // pull scores from local memory, add them to the empty array
 function loadHighscores() {
+    highscores = [];
     var savedScores = JSON.parse(localStorage.getItem("highscores"));
     if (savedScores !== null) {
         highscores = savedScores;
     }
-    else {
-        highscores = [];
-    }
+
 
 };
 
